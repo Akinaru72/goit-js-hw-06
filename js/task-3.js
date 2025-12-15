@@ -1,8 +1,8 @@
 class StringBuilder {
   #value;
 
-  constructor(initialValue) {
-    this.#value = initialValue;
+  constructor(value) {
+    this.#value = value;
   }
 
   getValue() {
@@ -10,19 +10,17 @@ class StringBuilder {
   }
 
   padEnd(str) {
-    this.#value = this.#value.concat(str);
+    this.#value += str;
   }
 
   padStart(str) {
-    this.#value = str.concat(this.#value);
+    this.#value = str + this.#value;
   }
 
-  padBoth(str) {
-    this.#value = str.concat(this.#value).concat(str);
+    padBoth(str) {
+    this.#value = str + this.#value + str; 
   }
-};
-
-
+}
 
 const builder = new StringBuilder(".");
 console.log(builder.getValue()); // "."
