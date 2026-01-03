@@ -1,47 +1,61 @@
-# goit-js-hw-06
+# Homework #6
 
-Домашнє завдання №6
+## Instructions
 
-Створи репозиторій goit-js-hw-06 та склонюй його собі на комп’ютер.
-У папці goit-js-hw-06 створи структуру проєкта, як показано на схемі нижче.
-Зверни увагу! Імена файлів та папок, а також їх структура вкладеності, мають відповідати вказаній схемі. В іншому разі робота не буде прийнята.
+1. Create a repository **`goit-js-hw-06`** and clone it to your computer.
+2. In the `goit-js-hw-06` folder, create the project structure as shown in the image below.
 
-Прочитай кожне завдання і виконай його у відповідному файлі.
-Переконайся, що код відформатований за допомогою Prettier, а в консолі відсутні помилки й попередження під час відкриття живої сторінки завдання
-Здай домашнє завдання на перевірку
-Формат здачі: Домашня робота містить два посилання: на вихідні файли і робочу сторінку на GitHub Pages.
+![Project preview](assets/goit-js-06.jpg)
 
-Задача 1. Акаунт користувача
+> **Attention!** The names of files and folders, as well as their nesting structure, must match the specified schema. Otherwise, the work will not be accepted.
 
-Виконуй це завдання у файлі task-1.js
+3. Read each task and complete it in the corresponding file.
+4. Make sure your code is formatted using **Prettier**, and there are no errors or warnings in the console when opening the live page of the task.
+5. Submit your homework for review.
 
-Перед звільненням розробник зламав вихідний код управління акаунтами користувачів нашого сервісу доставки їжі. Виконай рефакторинг методів об'єкта customer, розставивши відсутні this під час звернення до властивостей об'єкта.
+**Submission format:**  
+The homework must include two links:
 
-Використай цей стартовий код і виконай рефакторинг. Після оголошення об'єкта ми додали виклики методів. У консоль будуть виведені результати їх роботи. Будь ласка, нічого там не змінюй.
+- to the source files,
+- to the live page on GitHub Pages.
 
+---
+
+## Task 1. User Account
+
+Complete this task in the file **`task-1.js`**.
+
+Before leaving, the developer broke the original code for managing user accounts in our food delivery service.  
+Perform a **refactoring of the `customer` object's methods**, adding the missing `this` references when accessing the object’s properties.
+
+Use this starter code and perform the refactoring. Method calls have been added after the object declaration.  
+The console will display the results of their execution. Please do not change anything there.
+
+```javascript
 const customer = {
-username: "Mango",
-balance: 24000,
-discount: 0.1,
-orders: ["Burger", "Pizza", "Salad"],
-// Change code below this line
-getBalance() {
-return balance;
-},
-getDiscount() {
-return discount;
-},
-setDiscount(value) {
-discount = value;
-},
-getOrders() {
-return orders;
-},
-addOrder(cost, order) {
-balance -= cost - cost \* discount;
-orders.push(order);
-},
-// Change code above this line
+  username: "Mango",
+  balance: 24000,
+  discount: 0.1,
+  orders: ["Burger", "Pizza", "Salad"],
+
+  // Change code below this line
+  getBalance() {
+    return this.balance;
+  },
+  getDiscount() {
+    return this.discount;
+  },
+  setDiscount(value) {
+    this.discount = value;
+  },
+  getOrders() {
+    return this.orders;
+  },
+  addOrder(cost, order) {
+    this.balance -= cost - cost * this.discount;
+    this.orders.push(order);
+  },
+  // Change code above this line
 };
 
 customer.setDiscount(0.15);
@@ -49,38 +63,44 @@ console.log(customer.getDiscount()); // 0.15
 customer.addOrder(5000, "Steak");
 console.log(customer.getBalance()); // 19750
 console.log(customer.getOrders()); // ["Burger", "Pizza", "Salad", "Steak"]
+```
 
-Залиш цей код для перевірки ментором.
+Leave this code for mentor review.
 
-На що буде звертати увагу ментор при перевірці:
+---
 
-Оголошена змінна customer
-Значення змінної customer — це об'єкт із властивостями та методами
-Виклик customer.getDiscount() повертає поточне значення властивості discount
-Виклик customer.setDiscount(0.15) оновлює значення властивості discount
-Виклик customer.getBalance() повертає поточне значення властивості balance.
-Виклик customer.getOrders() повертає поточне значення властивості orders
-Виклик customer.addOrder(5000, "Steak") додає "Steak" у масив значень властивості orders та оновлює баланс
-Метод getBalance об'єкта customer використовує this
-Метод getDiscount об'єкта customer використовує this
-Метод setDiscount об'єкта customer використовує this
-Метод getOrders об'єкта customer використовує this
-Метод addOrder об'єкта customer використовує this
+What the mentor will pay attention to during the review:
 
-Задача 2. Склад
+- The variable `customer` is declared
+- The value of the variable `customer` is an object with properties and methods
+- Calling `customer.getDiscount()` returns the current value of the `discount` property
+- Calling `customer.setDiscount(0.15)` updates the value of the `discount` property
+- Calling `customer.getBalance()` returns the current value of the `balance` property
+- Calling `customer.getOrders()` returns the current value of the `orders` property
+- Calling `customer.addOrder(5000, "Steak")` adds `"Steak"` to the array of the `orders` property and updates the balance
+- The `getBalance` method of the `customer` object uses `this`
+- The `getDiscount` method of the `customer` object uses `this`
+- The `setDiscount` method of the `customer` object uses `this`
+- The `getOrders` method of the `customer` object uses `this`
+- The `addOrder` method of the `customer` object uses `this`
 
-Виконуй це завдання у файлі task-2.js
+---
 
-Створи клас Storage, який створюватиме об'єкти для управління складом товарів. Клас очікує лише один аргумент — початковий масив товарів, який записується до створеного об'єкта в приватну властивість items.
+## Task 2. Storage
 
-Оголоси наступні методи класу:
+Complete this task in the file `task-2.js`.
 
-getItems() — повертає масив поточних товарів у приватній властивості items.
-addItem(newItem) — приймає новий товар newItem і додає його до масиву товарів у приватну властивість items об'єкта.
-removeItem(itemToRemove) — приймає рядок з назвою товару itemToRemove і видаляє його з масиву товарів у приватній властивості items об'єкта.
+Create a class `Storage` that will create objects for managing a product warehouse. The class expects only one argument — an initial array of products, which is stored in the created object in the private property `items`.
 
-Візьми код нижче з ініціалізацією екземпляра й викликами методів і встав його після оголошення класу для перевірки коректності роботи. У консоль будуть виведені результати їх роботи. Будь ласка, нічого там не змінюй.
+Declare the following class methods:
 
+- `getItems()` — returns the array of current products in the private property `items`
+- `addItem(newItem)` — takes a new product `newItem` and adds it to the array of products in the private property `items` of the object
+- `removeItem(itemToRemove)` — takes a string with the name of the product `itemToRemove` and removes it from the array of products in the private property `items` of the object
+
+Take the code below with the instance initialization and method calls and place it after the class declaration to check correctness. The console will display the results of their execution. Please do not change anything.
+
+```javascript
 const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
 console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
 
@@ -92,40 +112,47 @@ console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
 
 storage.removeItem("Scaner");
 console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+```
 
-Залиш цей код для перевірки ментором.
+Leave this code for mentor review.
 
-На що буде звертати увагу ментор при перевірці:
+---
 
-Оголошений клас Storage
-У класі Storage оголошений метод getItems
-У класі Storage оголошений метод addItem
-У класі Storage оголошений метод removeItem
-Властивість items у класі Storage оголошена приватною
-Метод getItems повертає значення приватної властивості items екземпляра класу, який його викликає
-Метод addItem змінює значення приватної властивості items екземпляра класу, який його викликає
-Метод removeItem змінює значення приватної властивості items екземпляра класу, який його викликає
-У результаті виклику new Storage(["Nanitoids", "Prolonger", "Antigravitator"]) значення змінної storage — це об'єкт
-У об’єкта storage немає публічної властивості items
-Перший виклик storage.getItems() одразу після ініціалізації екземпляра повертає масив ["Nanitoids", "Prolonger", "Antigravitator"]
-Другий виклик storage.getItems() після виклику storage.addItem("Droid") повертає масив ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
-Третій виклик storage.getItems() після виклику storage.removeItem("Prolonger") повертає масив ["Nanitoids", "Antigravitator", "Droid"]
-Четвертий виклик storage.getItems() після виклику storage.removeItem("Scaner") повертає масив ["Nanitoids", "Antigravitator", "Droid"]
+What the mentor will pay attention to during the review:
 
-Задача 3. Конструктор рядків
+- The class `Storage` is declared
+- In the class `Storage`, the method `getItems` is declared
+- In the class `Storage`, the method `addItem` is declared
+- In the class `Storage`, the method `removeItem` is declared
+- The property `items` in the class `Storage` is declared as private
+- The method `getItems` returns the value of the private property `items` of the class instance that calls it
+- The method `addItem` changes the value of the private property `items` of the class instance that calls it
+- The method `removeItem` changes the value of the private property `items` of the class instance that calls it
+- As a result of calling `new Storage(["Nanitoids", "Prolonger", "Antigravitator"])`, the value of the variable `storage` is an object
+- The object `storage` does not have a public property `items`
+- The first call to `storage.getItems()` immediately after instance initialization returns the array `["Nanitoids", "Prolonger", "Antigravitator"]`
+- The second call to `storage.getItems()` after calling `storage.addItem("Droid")` returns the array `["Nanitoids", "Prolonger", "Antigravitator", "Droid"]`
+- The third call to `storage.getItems()` after calling `storage.removeItem("Prolonger")` returns the array `["Nanitoids", "Antigravitator", "Droid"]`
+- The fourth call to `storage.getItems()` after calling `storage.removeItem("Scaner")` returns the array `["Nanitoids", "Antigravitator", "Droid"]`
 
-Виконуй це завдання у файлі task-3.js
+---
 
-Напиши клас StringBuilder, який приймає один параметр initialValue — довільний рядок, який записується у приватну властивість value об'єкта, що створюється.
+## Task 3. String Constructor
 
-Оголоси наступні методи класу:
+Complete this task in the file `task-3.js`.
 
-getValue() — повертає поточне значення приватної властивості value.
-padEnd(str) — отримує параметр str (рядок) і додає його в кінець значення приватної властивості value об'єкта, який викликає цей метод.
-padStart(str) — отримує параметр str (рядок) і додає його на початок значення приватної властивості value об'єкта, який викликає цей метод.
-padBoth(str) — отримує параметр str (рядок) і додає його на початок і в кінець значення приватної властивості value об'єкта, який викликає цей метод.
-Візьми код нижче з ініціалізацією екземпляра й викликами методів і встав його після оголошення класу для перевірки коректності роботи. У консоль будуть виведені результати їх роботи. Будь ласка, нічого там не змінюй.
+Write a class `StringBuilder` that takes one parameter `initialValue` — an arbitrary string that is stored in the private property `value` of the object being created.
 
+Declare the following class methods:
+
+- `getValue()` — returns the current value of the private property `value`
+- `padEnd(str)` — takes the parameter `str` (string) and adds it to the end of the private property `value` of the object that calls this method
+- `padStart(str)` — takes the parameter `str` (string) and adds it to the beginning of the private property `value` of the object that calls this method
+- `padBoth(str)` — takes the parameter `str` (string) and adds it to both the beginning and the end of the private property `value` of the object that calls this method
+
+Take the code below with instance initialization and method calls and place it after the class declaration to check correctness. The console will display the results of their execution. Please do not change anything.
+
+```javascript
 const builder = new StringBuilder(".");
 console.log(builder.getValue()); // "."
 builder.padStart("^");
@@ -134,24 +161,26 @@ builder.padEnd("^");
 console.log(builder.getValue()); // "^.^"
 builder.padBoth("=");
 console.log(builder.getValue()); // "=^.^="
+```
 
-Залиш цей код для перевірки ментором.
+Leave this code for mentor review.
 
-На що буде звертати увагу ментор при перевірці:
+---
 
-Оголошений клас StringBuilder
-Властивість value у класі StringBuilder оголошена приватною
-У класі StringBuilder оголошений метод getValue
-Метод getValue повертає значення приватної властивості value екземпляра класу, який його викликає
-У класі StringBuilder оголошений метод padEnd
-Метод padEnd змінює значення приватної властивості value екземпляра класу, який його викликає
-У класі StringBuilder оголошений метод padStart
-Метод padStart змінює приватну властивість value екземпляра класу, який його викликає
-У класі StringBuilder оголошений метод padBoth
-Метод padBoth змінює значення приватної властивості value екземпляра класу, який його викликає
-У результаті виклику new StringBuilder(".") значення приватної змінної builder — це об'єкт
-Об'єкт builder не містить публічну властивість value
-Перший виклик builder.getValue() одразу після ініціалізації екземпляра повертає рядок .
-Другий виклик builder.getValue() після виклику builder.padStart("^") повертає рядок ^.
-Третій виклик builder.getValue() після виклику builder.padEnd("^") повертає рядок ^.^
-Четвертий виклик builder.getValue() після виклику builder.padBoth("=") повертає рядок =^.^=
+What the mentor will pay attention to during the review:
+
+- The class `StringBuilder` is declared
+- The property `value` in the class `StringBuilder` is declared as private
+- In the class `StringBuilder`, the method `getValue` is declared
+- The method `getValue` returns the value of the private property `value` of the class instance that calls it
+- In the class `StringBuilder`, the method `padEnd` is declared
+- The method `padEnd` changes the value of the private property `value` of the class instance that calls it
+- In the class `StringBuilder`, the method `padStart` is declared
+- The method `padStart` changes the private property `value` of the class instance that calls it
+- In the class `StringBuilder`, the method `padBoth` is declared
+- The method `padBoth` changes the value of the private property `value` of the class instance that calls it
+- As a result of calling `new StringBuilder(".")`, the value of the variable
+
+---
+
+**Live page: [GitHub Pages](https://akinaru72.github.io/goit-js-hw-05/)**
