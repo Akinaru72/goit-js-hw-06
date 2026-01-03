@@ -183,4 +183,4 @@ What the mentor will pay attention to during the review:
 
 ---
 
-**Live page: [GitHub Pages](https://akinaru72.github.io/goit-js-hw-05/)**
+**Live page: [GitHub Pages](https://akinaru72.github.io/goit-js-hw-06/)**
